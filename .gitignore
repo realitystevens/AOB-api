@@ -7,4 +7,6 @@ dev.sqlite3
 live.sqlite3
 
 media
-api_tester.py
+
+api_test.py
+python.py
