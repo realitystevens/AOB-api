@@ -8,15 +8,10 @@ from decouple import config
 def main():
     """Run administrative tasks."""
 
-    if config('ENVIRONMENT') == 'DEVELOPMENT':
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'aob.settings.development')
-    elif config('ENVIRONMENT') == 'PRODUCTION':
+    if config('ENVIRONMENT') == 'PRODUCTION':
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'aob.settings.production')
-    elif config('ENVIRONMENT') == 'STAGING':
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'aob.settings.staging')
-    elif os.environ.get('ENVIRONMENT') == 'STAGING':
-        print(os.environ)
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'aob.settings.staging')
+    elif os.environ.get('ENVIRONMENT') == 'STAGING' or config('ENVIRONMENT') == 'STAGING' or config('ENVIRONMENT') == 'DEVELOPMENT':
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'aob.settings.development')
     else:
         try:
             from django.core.exceptions import ImproperlyConfigured
