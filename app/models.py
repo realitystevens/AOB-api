@@ -1,7 +1,6 @@
 import random
 import string
 from django.db import models
-from django.apps import apps
 from django.utils.timezone import datetime
 from cloudinary.models import CloudinaryField
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -9,13 +8,36 @@ from decouple import config
 
 
 
-
 def productHash():
-    return ''.join(random.choices(string.ascii_lowercase, k=5))
+    letters = "acemnosuvwxz"
+    digits = "45678"
+
+    while True:
+        output = []
+        process = random.choices(letters + digits, k=6)
+
+        for i in range(len(process)-1):
+            if process[i].isdigit() and process[i+1].isdigit():
+                process[i+1] = random.choice(letters)
+            elif process[i].isalpha() and process[i+1].isalpha():
+                process[i+1] = random.choice(digits)
+            elif process[0].isdigit():
+                process[0] = random.choice(letters)
+            else:
+                continue
+
+            if process[-1].isdigit():
+                process[-1] = random.choice(letters)
+            else:
+                continue
+
+        output = "".join(process)
+        
+        return output
 
 
 def tagHash():
-    return ''.join(random.choices(string.digits, k=3))
+    return ''.join(random.choices(string.digits, k=5))
 
 
 
