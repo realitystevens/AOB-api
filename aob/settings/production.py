@@ -2,6 +2,7 @@ from aob.settings.main import *
 import cloudinary
 import cloudinary.api
 import cloudinary.uploader
+import dj_database_url
 
 
 
@@ -10,10 +11,7 @@ DEBUG = False
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'live.sqlite3'),
-    }
+    'default':dj_database_url.parse(os.getenv("DATABASE_URL"))
 }
 
 CLOUDINARY_STORAGE = {
