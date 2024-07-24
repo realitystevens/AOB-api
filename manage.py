@@ -15,6 +15,7 @@ def main():
     elif config('ENVIRONMENT') == 'STAGING':
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'aob.settings.staging')
     elif os.environ.get('ENVIRONMENT') == 'STAGING':
+        print(os.environ)
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'aob.settings.staging')
     else:
         try:
