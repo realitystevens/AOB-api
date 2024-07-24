@@ -14,25 +14,29 @@ DATABASES = {
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'ERROR',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs/django_error.log'),
+
+if config("ENVIRONMENT") == "DEVELOPMENT" or os.environ.get("ENVIRONMENT") == "DEVELOPMENT":
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'file': {
+                'level': 'ERROR',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(BASE_DIR, 'logs/django_error.log'),
+            },
+            'console': {
+                'level': 'ERROR',
+                'class': 'logging.StreamHandler',
+            },
         },
-        'console': {
-            'level': 'ERROR',
-            'class': 'logging.StreamHandler',
+        'loggers': {
+            'django': {
+                'handlers': ['file', 'console'],
+                'level': 'ERROR',
+                'propagate': True,
+            },
         },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file', 'console'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-    },
-}
+    }
+else:
+    pass
