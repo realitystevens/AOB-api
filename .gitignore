@@ -7,4 +7,6 @@ db.sqlite3
 
 media
 
+logs
+
 python.py
