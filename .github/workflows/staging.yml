@@ -32,3 +32,8 @@ jobs:
         python manage.py test
       env:
         ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+        SQLITE_DB_ENGINE: ${{ vars.SQLITE_DB_ENGINE }}
+        SQLITE_DB_NAME: ${{ vars.SQLITE_DB_NAME }}
+        CLOUDINARY_APISECRET: ${{ secrets.CLOUDINARY_APISECRET }}
+        CLOUDINARY_APIKEY: ${{ secrets.CLOUDINARY_APIKEY }}
+        CLOUDINARY_CLOUDNAME: ${{ secrets.CLOUDINARY_CLOUDNAME }}
