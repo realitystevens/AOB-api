@@ -3,9 +3,11 @@ import requests
 from decouple import config
 
 
-url = "https://127.0.0.1:8000/api/products/"
 
+BASE_URL = config('BASE_URL') or os.environ.get('BASE_URL')
 API_TOKEN = config('API_TOKEN') or os.environ.get('API_TOKEN')
+
+url = f"{BASE_URL}/api/products/"
 
 headers = {
     "Content-Type": "application/json",
