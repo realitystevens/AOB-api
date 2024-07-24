@@ -1,3 +1,4 @@
+import os
 import random
 import string
 from django.db import models
@@ -52,7 +53,7 @@ class Tag(models.Model):
     )
 
     id_hash = models.CharField(
-        max_length = 3, 
+        max_length = 5, 
         default = tagHash,
         primary_key = True,
         unique = True,
@@ -81,7 +82,7 @@ class Product(models.Model):
         Tag,
     )
 
-    if config('ENVIRONMENT') == 'PRODUCTION':
+    if config('ENVIRONMENT') == 'PRODUCTION' or os.environ.get('ENVIRONMENT') == 'PRODUCTION':
         image = CloudinaryField('image')
     else:
         image = models.ImageField(
@@ -105,7 +106,7 @@ class Product(models.Model):
     )
 
     url_hash = models.SlugField(
-        max_length = 5, 
+        max_length = 6, 
         default = productHash,
         primary_key = True,
         unique = True,
