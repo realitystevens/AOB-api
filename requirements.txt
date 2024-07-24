@@ -12,6 +12,7 @@ gunicorn
 idna
 packaging
 pillow
+psycopg2-binary
 python-decouple
 requests
 six
