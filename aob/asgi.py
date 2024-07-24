@@ -9,7 +9,7 @@ if config('ENVIRONMENT') == 'DEVELOPMENT':
 elif config('ENVIRONMENT') == 'PRODUCTION':
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'aob.settings.production')
 else:
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'aob.settings.workspace')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'aob.settings.staging')
 
 
 application = get_asgi_application()
