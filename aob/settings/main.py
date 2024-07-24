@@ -8,7 +8,7 @@ from django.core.management.utils import get_random_secret_key
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-SECRET_KEY = (config('SECRET_KEY'), get_random_secret_key())
+SECRET_KEY = config('SECRET_KEY', default=get_random_secret_key())
 
 ALLOWED_HOSTS = []
 
