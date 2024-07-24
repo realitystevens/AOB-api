@@ -62,6 +62,15 @@ class Tag(models.Model):
     )
 
 
+    class Meta:
+        ordering = ('name', 'id_hash',)
+
+
+    def __str__(self):
+        return self.name
+
+
+
 
 class Product(models.Model):
 
